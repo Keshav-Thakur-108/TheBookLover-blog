@@ -1,0 +1,76 @@
+<%- include("./partials/header") %>
+
+
+
+<div id="blogDiv" class="container">
+
+    <h6 style="color: #858585;"><%=moment(blog.created).format("MMM D")%></h6>
+    <br>
+    <h1 class="display-4" style="font-weight: 600;"><%=blog.title%></h1>
+    <br>
+    <p style="font-weight: 400;"><%-blog.text%></p>
+    <br>
+    <br>
+    <hr class="style-four">
+    <br>
+
+    <h2>Comments</h2>
+
+    <div id="commentbox">
+        <% for(var i = blog.comments.length-1; i>=0; i--){ %>
+        <br>
+        <div class="commentDiv">
+            <div>
+                <h3 style="font-size: 20px;"><%=blog.comments[i].author.username%></h3>
+                <small><%=blog.comments[i].text%></small>
+            </div>
+
+
+            <% if(blog.comments[i].author.id.equals(currentUser.id)) { %>
+            <div class="btn-group dropright">
+                <button type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                </button>
+
+
+
+
+                <div class="dropdown-menu">
+                    <a class="dropdown-item"
+                        href="/blogs/<%=blog._id%>/<%=blog.comments[i]._id%>/edit?_method=PUT">Edit</a>
+                    <div class="dropdown-divider"></div>
+                    <form action="/blogs/<%=blog._id%>/<%=blog.comments[i]._id%>/delete?_method=DELETE" method="POST">
+                        <button class="btn dropdown-item">Delete</button>
+                    </form>
+                </div>
+
+
+            </div>
+            <% } %>
+        </div>
+
+
+
+
+        <% } %>
+
+        <form action="/blogs/<%=blog._id%>/comments" method="POST">
+
+            <br>
+            <br>
+
+            <textarea id="commentarea" placeholder="Add a comment" class="form-control" name="comments[text]" cols="30"
+                rows="10"></textarea>
+            <button class="btn btn-success" id="publish">Submit</button>
+        </form>
+    </div>
+
+
+
+</div>
+
+
+
+
+
+<%- include("./partials/footer") %>

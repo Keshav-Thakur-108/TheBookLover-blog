@@ -1,0 +1,33 @@
+<%- include("../partials/header") %>
+
+
+
+<div class="container-fluid">
+
+    <div id="editDiv">
+        <div class="form-title-2">
+            Create
+        </div>
+        <form class="editBox" action="/blogs" method="POST">
+
+
+            <div class="form-group">
+                <label for="title">Title: </label>
+                <input class="form-control" id="text" type="text" name="title">
+            </div>
+            <div class="form-group">
+                <label id="content">Content: </label>
+                <textarea class="form-control" id="content" name="body" cols="30" rows="10"></textarea>
+            </div>
+
+            <button id="publish" class=" btn btn-primary">
+                Publish
+            </button>
+
+
+        </form>
+    </div>
+
+</div>
+
+<%- include("../partials/footer") %>

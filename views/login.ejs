@@ -1,0 +1,50 @@
+<%- include("./partials/header") %>
+
+<% if(error && error.length>0) { %>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <%=error%>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+</div>
+<% } %>
+
+<% if(success && success.length>0) { %>
+<div class="alert alert-success alert-dismissible fade show">
+    <%=success%>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+</div>
+<% } %>
+
+<div class="container-fluid">
+
+    <div>
+        <div class="form-title">
+            Sign In
+        </div>
+        <form class="loginBox" action="/login" method="POST">
+
+            <div class="form-group">
+                <label class="labelText" for="username">Username</label>
+                <input style="width: 250px;" class="form-control noBorder" type="text" id="username" name="username"
+                    placeholder="Enter you username">
+            </div>
+
+            <div class="form-group">
+                <label class="labelText" for="password">Password</label>
+                <input class="form-control noBorder " type="password" id="password" name="password"
+                    placeholder="Enter your password">
+            </div>
+            <a id="register" href="/register">New User!</a>
+            <button id="loginButton" class="btn btn-sm btn-success">
+                Login
+            </button>
+        </form>
+    </div>
+
+</div>
+
+
+
+
+<%- include("./partials/footer") %>

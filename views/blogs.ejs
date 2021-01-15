@@ -1,0 +1,54 @@
+<%- include("./partials/header") %>
+
+<% if(success && success.length>0) { %>
+<div class="alert alert-success">
+    <%=success%>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+</div>
+<% } %>
+
+<div class="container">
+    <% for(var i=blogs.length -1; i>=0; i--){ %>
+    <div class="list-group">
+        <div class="list-group-item">
+
+            <h1 class="display-4 text-center"><%=blogs[i].title%></h1>
+            <br>
+            <h3 class="text-muted text-center"><%-blogs[i].text.substring(0, 100) %>...</h3>
+            <br>
+            <br>
+            <div id="meta">
+                <div id="admin">
+                    <i class="fa fa-user-circle-o"></i>
+                    <small>Admin</small>
+                </div>
+
+                <small><%=moment(blogs[i].created).fromNow()%></small>
+            </div>
+
+            <hr class="style-three">
+
+            <% if(currentUser && currentUser.username == "Admin") { %>
+            <a style="margin-right: 10px;" class="btn btn-sm btn-warning" href="/blogs/<%=blogs[i]._id%>/edit">Edit</a>
+            <form style="display: inline;" action="/blogs/<%=blogs[i]._id%>/delete?_method=DELETE" method="POST">
+                <button class="btn btn-sm btn-danger">Delete</button>
+            </form>
+
+            <%   } %>
+
+
+
+
+
+            <a class="btn btn-sm btn-primary" style="float: right;" href="/blogs/<%=blogs[i]._id%>">More Info</a>
+
+        </div>
+
+    </div>
+
+    <% } %>
+</div>
+
+
+<%- include("./partials/footer") %>
